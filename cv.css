@@ -5,7 +5,7 @@ body {
     margin: 30px auto;
     display: flex;
     font-family: 'Poppins', sans-serif;
-    background: #3A7CA5; /* fallback */
+    background: #4DB6AC; /* fallback */
     background: linear-gradient(90deg, #3A7CA5 0%, #4DB6AC 100%);
 }
 
@@ -33,18 +33,25 @@ body {
 .left ul {
     list-style: none;
     padding: 0;
-    margin: 10px 0 15px;
+    margin: 10px 0;
 }
 
 .left ul li {
     margin: 8px 0;
 }
 
+.left a {
+    text-decoration: none;
+    color: #060707;
+}
+
 .left a img {
     width: 50px;
     height: 50px;
+    border-radius: 0px;
     border: none;
     margin-bottom: 0px;
+    margin: 0 5px;
 }
 
 .left a:focus {
@@ -52,8 +59,13 @@ body {
     outline-offset: 2px;
 }
 
+/* Afficher Contact seulement en responsive */
+#contact-responsive {
+    display: none;
+}
+
 .left h3 {
-    margin-top: 20px;
+    margin-top: 20px 0 15px;
     font-size: 18px;
     color: #3A7CA5;
     border-bottom: 2px solid #4DB6AC;
@@ -67,12 +79,20 @@ body {
     line-height: 1.5;
 }
 
-.left:hover {
+.left:hover,
+.right:hover {
     background-color: #f0f0f0;
     transition: background-color 0.3s ease; 
 }
 
+
 /* Colonne droite */
+
+
+/* Cacher la photo --> version responsive */
+.photo-responsive{
+    display: none;
+}
 
 .right {
     flex: 1;
@@ -89,7 +109,7 @@ body {
 
 .right h2 {
     font-size: 18px;
-    margin: 0 0 60px 0;
+    margin: 0 0 30px 0;
     color: #555;
 }
 
@@ -108,14 +128,152 @@ body {
     line-height: 1.5;
 }
 
+.projets{
+    line-height: 1.5;
+    margin: 0px;
+}
+
 .right ul {
     margin-top: 5px;
     margin-left: 20px;
     font-size: 15px;
 }
 
-.right:hover {
-    background-color: #f0f0f0;
-    transition: background-color 0.3s ease; 
+
+
+/* Responsive */
+
+
+/* Imprimer le CV */
+@media print {
+
+    body {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        background: white;
+        color: black;
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+
+    .left, .right {
+        background: white;
+        color: black;
+        border: none;
+        box-shadow: none;
+    }
+
+    body {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .left {
+        width: 35%;
+        padding: 10px;
+        border-right: 1px solid #ddd;
+    }
+
+    .right {
+        width: 65%;
+        padding: 15px;
+    }
+
+    .left img, .photo-cv {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #3A7CA5;
+        margin-bottom: 10px;
+    }
+
+    /* Éviter les sauts de page entre les éléments */
+    section, div {
+        page-break-inside: avoid;
+    }
+
+    h1 {
+        font-size: 20pt;
+    }
+
+    h2 {
+        font-size: 14pt;
+    }
+
+    h3 {
+        font-size: 12pt;
+        border: none;
+    }
 }
 
+/* Responsive pour les petits écrans */
+
+@media (max-width: 700px) {
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 85%;
+        margin: 10px auto;
+        background: linear-gradient(180deg, #3A7CA5 0%, #4DB6AC 100%);
+    }
+
+    /* Afficher photo en responsive */
+    .photo-responsive {
+        display: block;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px auto;
+        border: 4px solid #3A7CA5;
+    }
+
+    .right {
+        order: 1;
+        width: 100%;
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .left {
+        order: 2;
+        width: 100%;
+        background: #fff;
+        border-radius: 10px;
+        border: none;
+        padding: 20px;
+    }
+
+    /* Cacher la photo version pc */
+    .photo-cv {
+        display: none;
+    }
+
+    .right h1 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .right h2 {
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    /* Apparaître titre Contact */
+    #contact-responsive {
+        display: block;
+    }
+
+    .right p,
+    .left p {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
